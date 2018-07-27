@@ -1,7 +1,7 @@
 {
   "name": "papis_connector",
   "description": "Send command to papis to add paper from the current url.",
-  "path": "/opt/papis-connector/papis_connector.py",
+  "path": "/home/spopoff/.config/papis/scripts/papis_connector.py",
   "type": "stdio",
-  "allowed_extensions": [ "papis_connector@wavefrontshaping.net" ]
+  "allowed_extensions": [ "papis_connector@papis" ]
 }

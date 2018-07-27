@@ -1,0 +1,34 @@
+#!/bin/bash
+# papis-short-help: Configure Mozilla Firefox for the Papis connector web-extension
+
+#DEFAULT_PATH=/opt/papis-connector
+
+echo "This will configure Mozilla Firefox for the Papis connector web-extension."
+echo "It requires the add-on for Firefox available at https://addons.mozilla.org/addon/papis-connector/"
+while true; do
+    read -r -p "Do you wish to continue? [Y/n]" yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) break;;
+    esac
+done
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
+
+## Now replace the path value in the json file
+chmod +x papis_connector.py
+echo $SCRIPT_DIR
+echo "Editing and copying json file to mozilla user folder"
+sed -i "s|^\(\s*\"*path\"\s*:\s*\).*,\s*$|\1\"$SCRIPT_DIR/papis_connector.py\",|" $SCRIPT_DIR/papis_connector.json
+#cat $SCRIPT_DIR/papis_connector.json
+mkdir -p ~/.mozilla/native-messaging-hosts
+cp $SCRIPT_DIR/papis_connector.json ~/.mozilla/native-messaging-hosts
+
+
+echo "Done"
+
+
+
+
+
